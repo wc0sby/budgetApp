@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <MuiThemeProvider>
-          <NavBar/>
+          <NavBar title="Budget"/>
         {/* <header className="App-header">
           <h1>Budget App</h1>
         </header> */}
@@ -20,22 +20,23 @@ class App extends Component {
           {/* container for charts and data */}
           <section className="chart-container">
             {/* container for charts */}
-            <article className="chart">
               <InfoCard/>
+              <InfoCard/>
+              <InfoCard/>
+            {/* <article className="chart">
             </article>
             <article className="chart">
               <InfoCard/>
             </article>
-            <article className="chart">
               <InfoCard/>
-            </article>
+            <article className="chart">
+            </article> */}
           </section>
           <section className="data-container">
             <nav className="data-tabs">
 
             </nav>
             <article className="data">
-              Transactions
               <Transactions/>
             </article>
           </section>

@@ -11,28 +11,20 @@
 }
 
 .main-container {
-  border: solid #222 2px;
   width: 80%;
-  height: 500px;
+  height: 350px;
   margin: 2% 10%;
 }
 
 .chart-container {
   width: 100%;
-  height: 50%;
+  height: 350px;
   display: flex;
   align-items: flex-start;
   justify-content: space-around ;
 }
 
-.chart {
-  border: dotted #222 2px;
-  width: 20%;
-  height: 100%;
-}
-
 .data-container {
-  border: dotted #222 2px;
   width: 100%;
   height: 50%;
   display: flex;
@@ -41,7 +33,6 @@
 }
 
 .data {
-  border: dotted #222 2px;
   width: 95%;
   height: 85%;
   margin: 1% 0
