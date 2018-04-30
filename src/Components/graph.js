@@ -42,12 +42,16 @@ export default class AppChart extends Component {
       scales: {
         yAxes: [{
             ticks: {
-                beginAtZero:true
+                display: false,
+                beginAtZero: true
+            },
+            gridLines: {
+              display: false,
             }
         }]
       },
-      
     }
+
     return (<Pie 
             data={dataSet} 
             options={dataOptions}

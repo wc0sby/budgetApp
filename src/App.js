@@ -4,7 +4,8 @@ import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NavBar from './Components/nav';
 import Transactions from './Components/table';
-import AppChart from './Components/graph';
+import InfoCard from './Components/infoCard'
+// import AppChart from './Components/graph';
 
 class App extends Component {
   render() {
@@ -20,16 +21,13 @@ class App extends Component {
           <section className="chart-container">
             {/* container for charts */}
             <article className="chart">
-              Chart
-              <AppChart/>
+              <InfoCard/>
             </article>
             <article className="chart">
-              Chart
-              <AppChart/>
+              <InfoCard/>
             </article>
             <article className="chart">
-              Chart
-              <AppChart/>
+              <InfoCard/>
             </article>
           </section>
           <section className="data-container">
