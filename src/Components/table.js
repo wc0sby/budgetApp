@@ -8,52 +8,54 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import NavBar from './nav';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {selectTRX} from '../Actions/index'
 
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
  */
-export default class Transactions extends Component{
+class Transactions extends Component{
   render(){
+    const TRX = this.props.transaction
+
+    const transactionHeader = Object.keys(TRX[0]).map((trx,i)=>{
+      return <TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>
+    })
+
+    const transactionData = TRX.map((trx,i)=>{
+      return (
+        <TableRow key={i}>
+          <TableRowColumn>{trx._id}</TableRowColumn>
+          <TableRowColumn>{trx.name}</TableRowColumn>
+          <TableRowColumn>${trx.amount}</TableRowColumn>
+          <TableRowColumn>{trx.date}</TableRowColumn>
+          <TableRowColumn>{trx.category}</TableRowColumn>
+          <TableRowColumn>{trx._v}</TableRowColumn>
+        </TableRow>
+      )
+    })
     return (
-    <div>
-      <NavBar title="Transactions"/>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>1</TableRowColumn>
-            <TableRowColumn>John Smith</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>2</TableRowColumn>
-            <TableRowColumn>Randal White</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>3</TableRowColumn>
-            <TableRowColumn>Stephanie Sanders</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>Steve Brown</TableRowColumn>
-            <TableRowColumn>Employed</TableRowColumn>
-          </TableRow>
-          <TableRow>
-            <TableRowColumn>5</TableRowColumn>
-            <TableRowColumn>Christopher Nolan</TableRowColumn>
-            <TableRowColumn>Unemployed</TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              {transactionHeader}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {transactionData}
+          </TableBody>
+        </Table>
       </div>
     );
   }
 }
+
+const mapStateToProps = state =>{return{transaction:state.transaction}}
+
+// const matchDispatchToProps = dispach =>{return{bindActionCreators({selectTRX: selectTRX},dispach)}}
+
+const TransactionsContainer = connect(mapStateToProps)(Transactions)
+
+export default TransactionsContainer
