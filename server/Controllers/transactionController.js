@@ -17,10 +17,10 @@ module.exports.show = ((req, res)=>{
 
 module.exports.create = ((req, res)=>{
   const newTRX = new Trans({
-    name: "hello",
-    amount: 50,
-    date: '5/31/2018',
-    category: "test"
+    name: req.body.name,
+    amount: req.body.amount,
+    date: req.body.date,
+    category: req.body.category
   })
   newTRX.save()
   .then(savedTRX=>{

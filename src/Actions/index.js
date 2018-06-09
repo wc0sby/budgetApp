@@ -1,8 +1,17 @@
-export const selectTRX=(transaction)=>{
-  console.log(`user: ${transaction.name}`)
-  //the below is actually called the action (returns something)...the whole function is called action creater
-  return {
-    "type": "TRANSACTION_NAME_SELECTED",
-    "payload": transaction 
+export function loadTransactions(){
+  return dispatch =>{
+    fetch("http://192.168.1.105:4001/transaction")
+      .then(res => res.json())
+      .then(
+        (transactions)=>{
+        dispatch(transactionsLoaded(transactions[0]))
+    })
+  }
+}
+
+const transactionsLoaded=(transactions)=>{
+  return{
+    type: "TRANSACTIONS_LOADED",
+    value: transactions
   }
 }

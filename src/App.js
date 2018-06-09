@@ -3,7 +3,7 @@ import './App.css'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import NavBar from './Components/nav'
-import Transactions from './Components/table'
+// import Transactions from './Components/table'
 import InfoCard from './Components/infoCard'
 import Tabs from './Components/tabs'
 import Card from './Components/card'
