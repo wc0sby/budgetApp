@@ -15,3 +15,10 @@ const transactionsLoaded=(transactions)=>{
     value: transactions
   }
 }
+
+const cashLoaded=(cash)=>{
+  return{
+    type: "CASH_LOADED",
+    value: cash
+  }
+}

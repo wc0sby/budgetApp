@@ -3,7 +3,6 @@ import './App.css'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import NavBar from './Components/nav'
-// import Transactions from './Components/table'
 import InfoCard from './Components/infoCard'
 import Tabs from './Components/tabs'
 import Card from './Components/card'
@@ -51,7 +50,7 @@ class App extends Component {
             <Grid item xs>
               <Grid 
                 container
-                spacing={12}
+                spacing={16}
                 alignItems={Style.chartGrid.alignItems}
                 direction={Style.chartGrid.direction}
                 justify={Style.chartGrid.justify}
@@ -64,7 +63,7 @@ class App extends Component {
             <Grid item xs>
               <Grid 
                 container
-                spacing={12}
+                spacing={16}
                 alignItems={Style.chartGrid.alignItems}
                 direction={Style.chartGrid.direction}
                 justify={Style.chartGrid.justify}
@@ -77,7 +76,7 @@ class App extends Component {
             <Grid item xs>
               <Grid 
                 container
-                spacing={12}
+                spacing={16}
                 alignItems={Style.chartGrid.alignItems}
                 direction={Style.chartGrid.direction}
                 justify={Style.chartGrid.justify}
@@ -107,7 +106,7 @@ class App extends Component {
 
         <Grid container>
           <Grid item xs>
-            <Tabs/>
+            <Tabs />
           </Grid>
           <AddButton
             handleOpen={this.handleFormOpen}

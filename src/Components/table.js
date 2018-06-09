@@ -14,32 +14,13 @@ import { connect } from 'react-redux'
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
  */
-class Transactions extends Component{
-  state = {
-    trans: [{}]
-  }
-
-  componentDidMount(){
-
-    const url = "http://localhost:4001/transaction/"
-    const fetchObj = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: 'GET'
-    }
-
-    fetch(url, fetchObj)
-      .then(res => res.json())
-      .then(
-        (transactions)=>{
-        this.setState({trans: transactions})
-    })
-  }
+class DataTable extends Component{
 
   render(){
-    // const TRX = this.props.transaction
-    const TRX = this.state.trans
+    // const TRX = this.props.loadTransactions
+    const TRX = this.props.data
+    // const test = this.props.trx
+    // console.log(test)
 
     const transactionHeader = Object.keys(TRX[0]).map((trx,i)=>{
       return <TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>
@@ -74,14 +55,4 @@ class Transactions extends Component{
   }
 }
 
-const msp = state =>{return{transaction:state.transaction}}
-
-// const mdp = dispatch =>{
-//   return({
-//     loadTransactions: (id)=>dispatch(loadTransactions(id))
-//   })
-// }
-
-const TransactionsContainer = connect(msp)(Transactions)
-
-export default TransactionsContainer
+export default DataTable

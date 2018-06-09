@@ -9,7 +9,14 @@ const transaction = (state = [], action)=>{
   return state
 }
 
+const cashTrx = (state = [], action)=>{
+  if (action.type === "CASH_LOADED"){
+    return action.value
+  }
+  return state
+}
+
 const rootReducer = combineReducers({
-  transaction
+  transaction, cashTrx
 });
 export default rootReducer

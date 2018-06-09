@@ -1,5 +1,4 @@
-export function getTransactions(){
-  return data =>{
+module.exports.getTransaction = (data)=>{
     const url = "http://localhost:4001/transaction/"
     const fetchObj = {
       headers: {
@@ -7,12 +6,10 @@ export function getTransactions(){
       },
       method: 'GET'
     }
-
-    fetch(url, fetchObj)
+    return fetch(url, fetchObj)
       .then(res => res.json())
       .then(
         (transactions)=>{
         return transactions
     })
-  }
 }

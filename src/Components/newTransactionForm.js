@@ -48,8 +48,6 @@ class FormDialog extends Component {
         (transactions)=>{
         this.setState({trans: transactions})
     })
-
-    this.props.close
   }
 
   handleFormInput = (e)=>{
