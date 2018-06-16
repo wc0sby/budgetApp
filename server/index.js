@@ -22,5 +22,6 @@ app.use(parser.json())
 //Input routes here
 app.use(require('./Routers/transactionRouter'))
 app.use(require('./Routers/cashRouter'))
+app.use(require('./Routers/budgetRouter'))
 
 app.listen(4001, () => console.log('Listening on port 4001!'))

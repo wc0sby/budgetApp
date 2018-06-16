@@ -11,15 +11,13 @@ const styles = theme => ({
   },
 });
 
-
-
 function addButton(props){
   const { classes } = props
   return(
     <div>
       <Button 
         variant="fab" 
-        color="primary" 
+        color="secondary" 
         aria-label="add" 
         className={classes.button}
         onClick={()=>props.handleOpen()}

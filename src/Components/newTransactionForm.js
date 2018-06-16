@@ -126,7 +126,8 @@ class FormDialog extends Component {
               // onClick={this.props.close} 
               color="primary"
               onClick={()=>{
-                  this.postNewTRX(this.state)
+                  const trx = this.state
+                  this.props.postNewTRX(trx)
                   this.props.close()
                 }
               }

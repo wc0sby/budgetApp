@@ -4,16 +4,25 @@ import './App.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import NavBar from './Components/nav'
 import InfoCard from './Components/infoCard'
-import Tabs from './Components/tabs'
+import Tabs from './Container/Presentational/TransactionContainer'
 import Card from './Components/card'
 import Grid from '@material-ui/core/Grid';
 import AddButton from './Components/Buttons/addItem.js'
-import NewTRX from './Components/newTransactionForm'
+import NewTRX from './Container/Functional/FormContainer'
 
 class App extends Component {
   state = {
     formOpen: false,
+    value: ''
   };
+
+  componentDidMount(){
+
+    this.props.fetchMain()
+    this.props.fetchCash()
+    this.props.fetchBudget()
+
+  }
 
   handleFormOpen = () => {
     this.setState({ formOpen: true });
@@ -22,6 +31,10 @@ class App extends Component {
   handleFormClose = () => {
     this.setState({ formOpen: false });
   };
+
+  handleTabChange = (e, value)=>{
+    this.setState({ value })
+  }
 
   render() {
     const Style = {
@@ -91,22 +104,40 @@ class App extends Component {
 
         <Grid container spacing={24}>
           <Grid item xs>
-            <Card/>
+            <Card
+              title="Balance"
+              data={this.state.trans}
+            />
           </Grid>
           <Grid item xs>
-            <Card/>
+            <Card
+            title="Date"
+            data={new Date().toDateString()}
+            />
           </Grid>
           <Grid item xs>
-            <Card/>
+            <Card
+            title="Message"
+            data={'You can do it!!!'}
+            />
           </Grid>
           <Grid item xs>
-            <Card/>
+            <Card
+            title="Free Spending"
+            data={this.state.budget}
+            />
           </Grid>
         </Grid>
 
         <Grid container>
           <Grid item xs>
-            <Tabs />
+            <Tabs 
+              main = {this.state.trans}
+              cash = {this.state.cash}
+              budget = {this.state.budget}
+              value = {this.state.value}
+              handleTabChange = {this.handleTabChange}
+            />
           </Grid>
           <AddButton
             handleOpen={this.handleFormOpen}

@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
-import Transactions from '../../Components/table'
+import Tabs from '../../Components/tabs'
 
-const msp = state =>{return{transaction:state.transaction}}
+const msp = state =>{
+  return{
+    main:state.mainTrx,
+    cash:state.cashTrx,
+    budget:state.budgetTrx
+  }
+}
 
-// const mdp = dispatch =>{
-//   return({
-//     loadTransactions: (id)=>dispatch(loadTransactions(id))
-//   })
-// }
+export default connect(msp)(Tabs)
 
-const TransactionsContainer = connect(msp)(Transactions)
-
-export default TransactionsContainer

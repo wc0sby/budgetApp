@@ -7,9 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-// import NavBar from './nav';
-import { connect } from 'react-redux'
-// import {getTransactions} from '../Fetch/index'
+
 
 /**
  * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
@@ -20,7 +18,7 @@ class DataTable extends Component{
     // const TRX = this.props.loadTransactions
     const TRX = this.props.data
     // const test = this.props.trx
-    // console.log(test)
+    // console.log(TRX)
 
     const transactionHeader = Object.keys(TRX[0]).map((trx,i)=>{
       return <TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>
@@ -28,7 +26,7 @@ class DataTable extends Component{
 
     const transactionData = TRX.map((trx,i)=>{
       return (
-        <TableRow key={i}>
+        <TableRow key={trx._id}>
           <TableRowColumn>{trx._id}</TableRowColumn>
           <TableRowColumn>{trx.name}</TableRowColumn>
           <TableRowColumn>${trx.amount}</TableRowColumn>

@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 //JS default parmaeter relates to the state = []
 // this is an ES6 thing that sets state to an empty array when undefined
 // the data type can be anything, it's just setting the default value when somehting is incorrectly passed
-const transaction = (state = [], action)=>{
+const mainTrx = (state = [], action)=>{
   if (action.type === "TRANSACTIONS_LOADED"){
     return action.value
   }
@@ -16,7 +16,14 @@ const cashTrx = (state = [], action)=>{
   return state
 }
 
+const budgetTrx = (state = [], action)=>{
+  if (action.type === "BUDGET_LOADED"){
+    return action.value
+  }
+  return state
+}
+
 const rootReducer = combineReducers({
-  transaction, cashTrx
+  mainTrx, cashTrx, budgetTrx
 });
 export default rootReducer
