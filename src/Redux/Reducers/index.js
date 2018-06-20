@@ -23,6 +23,7 @@ const budgetTrx = (state = [], action)=>{
   return state
 }
 
+
 const rootReducer = combineReducers({
   mainTrx, cashTrx, budgetTrx
 });

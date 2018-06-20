@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import {Card, CardTitle, CardContent, Typography} from '@material-ui/core';
+import {Card, CardContent, Typography} from '@material-ui/core';
 
 
 export default class CardHold extends Component {
   render() {
     const stylesheet = {
       marginBottom: '10px'
-      // height: '300px',
-      // width: '350px',
-      // borderRadius: '15px',
     }
     const data = typeof(this.props.data)==='object'
       ? this.props.data.map(item=>item.amount)

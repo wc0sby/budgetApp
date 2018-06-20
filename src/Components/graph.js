@@ -65,8 +65,8 @@ export default class AppChart extends Component {
     return (<Pie 
             data={dataSet} 
             options={dataOptions}
-            width={'100%'}
-            height={'70%'}
+            width={350}
+            height={210}
           />
     )}
 }

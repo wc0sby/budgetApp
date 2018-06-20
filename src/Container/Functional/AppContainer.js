@@ -4,6 +4,14 @@ import {loadMain} from '../../Redux/Actions/mainTrxActions'
 import {loadCash} from '../../Redux/Actions/cashTrxActions'
 import {loadBudget} from '../../Redux/Actions/budgetTrxActions'
 
+const msp=state=>{
+  return{
+    balance: state.mainTrx,
+    freeSpending: state.budgetTrx,
+    isLoaded: state.loadStatus
+  }
+}
+
 //map dispatch to props for fetch calls
 const mdp=(dispatch)=>{
   return{
@@ -13,4 +21,4 @@ const mdp=(dispatch)=>{
   }
 }
 
-export default connect(null, mdp)(App)
+export default connect(msp, mdp)(App)

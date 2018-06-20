@@ -30,4 +30,9 @@ module.exports.create = ((req, res)=>{
 
 module.exports.update = ((req, res)=>res.json({theId: req.params.id}))
 
-module.exports.remove = ((req, res)=>res.json({}))
+module.exports.remove = ((req, res)=>{
+  Trans.deleteOne({_id:req.params.id}).exec()
+  .then(transaction=>{
+  res.json(transaction)
+  })
+})

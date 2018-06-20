@@ -1,5 +1,5 @@
 export default {
-    transaction:[
+    mainTrx:[
       {
           "_id": "5b0203b4c132321292f88467",
           "name": "hello",

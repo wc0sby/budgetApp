@@ -9,19 +9,25 @@ import Card from './Components/card'
 import Grid from '@material-ui/core/Grid';
 import AddButton from './Components/Buttons/addItem.js'
 import NewTRX from './Container/Functional/FormContainer'
+import SideBar from './Components/sidebar'
 
 class App extends Component {
   state = {
     formOpen: false,
-    value: ''
+    value: '0',
+    left: false
+  };
+
+  toggleDrawer = (side, open) => {
+    this.setState({
+      [side]: open,
+    });
   };
 
   componentDidMount(){
-
     this.props.fetchMain()
     this.props.fetchCash()
     this.props.fetchBudget()
-
   }
 
   handleFormOpen = () => {
@@ -47,19 +53,18 @@ class App extends Component {
     return (
         <MuiThemeProvider>
       <div >
-          <NavBar title="Budget"/>
-        {/* <header className="App-header">
-          <h1>Budget App</h1>
-        </header> */}
+          <NavBar 
+            title="Budget"
+            toggleBar = {(side,open)=>this.toggleDrawer(side,open)}
+          />
+          <SideBar
+             toggleBar={this.toggleDrawer}
+             open={this.state.left}
+            />
         <div className="main-container">
-        {/* <div style={{ margin: '0 5%', flex: 1, justifyContent: 'center'}}> */}
           <Grid 
             container spacing={24}
-            // style={{flexGrow:1}}
           >
-            {/* container for charts and data */}
-            {/* <section className="chart-container"> */}
-              {/* container for charts */}
             <Grid item xs>
               <Grid 
                 container
@@ -100,13 +105,12 @@ class App extends Component {
               </Grid>
             </Grid>
           </Grid>
-        {/* </div> */}
 
         <Grid container spacing={24}>
           <Grid item xs>
             <Card
               title="Balance"
-              data={this.state.trans}
+              data={this.props.balance}
             />
           </Grid>
           <Grid item xs>
@@ -124,7 +128,7 @@ class App extends Component {
           <Grid item xs>
             <Card
             title="Free Spending"
-            data={this.state.budget}
+            data={this.props.freeSpending}
             />
           </Grid>
         </Grid>
@@ -132,9 +136,6 @@ class App extends Component {
         <Grid container>
           <Grid item xs>
             <Tabs 
-              main = {this.state.trans}
-              cash = {this.state.cash}
-              budget = {this.state.budget}
               value = {this.state.value}
               handleTabChange = {this.handleTabChange}
             />

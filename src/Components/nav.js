@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import SideBar from './sidebar'
 /**
  * A simple example of `AppBar` with an icon on the right.
  * By default, the left icon is a navigation-menu.
@@ -30,16 +29,6 @@ const styles = {
  };
 class NavBar extends Component{
 
-  state = {
-    left: false,
-  };
-
-  toggleDrawer = (side, open) => {
-    this.setState({
-      [side]: open,
-    });
-  };
-
   render(){
     const { classes } = this.props
     return(
@@ -50,13 +39,9 @@ class NavBar extends Component{
             className={classes.menuButton} 
             color="inherit" 
             aria-label="Menu"
-            onClick={()=>this.toggleDrawer('left', true)}
+            onClick={()=>this.props.toggleBar('left', true)}
           >
             <MenuIcon />
-            <SideBar
-             toggleBar={()=>this.toggleDrawer()}
-             open={this.state.left}
-            />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
             {this.props.title}

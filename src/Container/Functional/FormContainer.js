@@ -4,7 +4,7 @@ import Form from '../../Components/newTransactionForm'
 
 const mdp =(dispatch)=>{
   return {
-    postNewTRX: (trx)=>dispatch(postNewMainTrx(trx))
+    postNewTRX: (trx)=>dispatch(postNewMainTrx(trx)),
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Paper, Tabs, Tab, AppBar } from '@material-ui/core';
-import Transactions from '../Components/table'
+import Transactions from '../Container/Functional/TableContainer'
 
 export default class TabHeader extends Component{
   // state = {
@@ -27,7 +27,7 @@ export default class TabHeader extends Component{
         </AppBar>
       <Paper style={{width:'96%', marginLeft: '2%'}}>
       {/* TODO: Add props to pass down table values */}
-        {this.props.value === 0 && <Transactions data={this.props.main}/>}
+        {this.props.value === 0 && <Transactions data={this.props.main} />}
         {this.props.value === 1 && <Transactions data={this.props.cash} />}
         {this.props.value === 2 && <Transactions data={this.props.budget} /> }
         {this.props.value === 3 && <Paper> Let's Recon </Paper>}

@@ -70,76 +70,78 @@ class FormDialog extends Component {
           onClose={this.props.close}
           aria-labelledby="form-dialog-title"
         >
-        <AppBar position="static">
-          <DialogActions>
-            <Button
-              onClick={this.props.close} 
-            >
-            <Icon>close</Icon>
-            </Button>
-          </DialogActions>
-          <DialogTitle id="form-dialog-title">{this.props.name}
-          </DialogTitle>
+          <AppBar position="static">
+            <DialogActions>
+              <Button onClick={this.props.close}>
+                <Icon>close</Icon>
+              </Button>
+            </DialogActions>
+            
+            <DialogTitle id="form-dialog-title">{this.props.name}</DialogTitle>
+
           </AppBar>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Transaction Name"
-              type="text"
-              onChange={this.handleFormInput}
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              id="date"
-              label="Transaction Date"
-              type="date"
-              onChange={this.handleFormInput}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              id="amount"
-              label="Transaction Amt"
-              type="currency"
-              onChange={this.handleFormInput}
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              id="category"
-              label="Budget Category"
-              type="text"
-              onChange={this.handleFormInput}
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button 
-              className={classes.button}
-              variant="raised" size="small"
-              // onClick={this.props.close} 
-              color="primary"
-              onClick={()=>{
-                  const trx = this.state
-                  this.props.postNewTRX(trx)
-                  this.props.close()
+          
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Transaction Name"
+                type="text"
+                onChange={this.handleFormInput}
+                fullWidth
+              />
+              <TextField
+                required
+                margin="dense"
+                id="date"
+                label="Transaction Date"
+                type="date"
+                onChange={this.handleFormInput}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+              />
+              <TextField
+                margin="dense"
+                id="amount"
+                label="Transaction Amt"
+                type="currency"
+                onChange={this.handleFormInput}
+                fullWidth
+              />
+              <TextField
+                margin="dense"
+                id="category"
+                label="Budget Category"
+                type="text"
+                onChange={this.handleFormInput}
+                fullWidth
+              />
+            </DialogContent>
+            
+            <DialogActions>
+              <Button 
+                className={classes.button}
+                variant="raised" size="small"
+                // onClick={this.props.close} 
+                color="primary"
+                onClick={()=>{
+                    const trx = this.state
+                    this.props.postNewTRX(trx)
+                    this.props.close()
+                  }
                 }
-              }
-            >
-            <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    );
+              >
+              <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      );
+    }
   }
-}
 
 export default withStyles(styles)(FormDialog)

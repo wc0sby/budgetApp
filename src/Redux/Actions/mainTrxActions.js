@@ -10,7 +10,6 @@ export const loadMain=()=>{
 }
 
 const mainLoaded=(transactions)=>{
-  console.log(transactions)
   return{
     type: "TRANSACTIONS_LOADED",
     value: transactions
@@ -29,7 +28,6 @@ export const postNewMainTrx=(main)=>{
     })
     .then(res=>res.json())
     .then((trx)=>{
-      console.log(trx)
       dispatch(loadMain(trx))
     })
   }
@@ -39,12 +37,11 @@ export const postNewMainTrx=(main)=>{
 export const deleteMainTrx=(id)=>{
   return (dispatch)=>{
     fetch(`/transaction/${id}`,{
-      method: 'delete',
-      headers:{'content-type':'application/json'}
+      method: 'DELETE'
     })
     .then(res=>res.json())
     .then((trx)=>{
-      dispatch(loadMain())
+      dispatch(loadMain(trx))
     })
   }
 }

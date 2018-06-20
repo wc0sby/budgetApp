@@ -8,38 +8,37 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-
-/**
- * A simple table demonstrating the hierarchy of the `Table` component and its sub-components.
- */
 class DataTable extends Component{
-
   render(){
-    // const TRX = this.props.loadTransactions
     const TRX = this.props.data
-    // const test = this.props.trx
-    // console.log(TRX)
-
-    const transactionHeader = Object.keys(TRX[0]).map((trx,i)=>{
-      return <TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>
+    //remove the version and id from client's view and map the new array
+    const columns = Object.keys(TRX[0]).filter((trx)=>{
+      return trx !== '_id' && trx !=='__v'
     })
+    console.log(columns);
+
+    const transactionHeader = columns.map((trx, i)=><TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>)
+
+    const dateFormatter =(date)=>{
+      const trxDate = new Date(date)
+      return `${trxDate.getMonth()+1}/${trxDate.getDate()+1}/${trxDate.getFullYear()}`
+    }
 
     const transactionData = TRX.map((trx,i)=>{
       return (
-        <TableRow key={trx._id}>
-          <TableRowColumn>{trx._id}</TableRowColumn>
-          <TableRowColumn>{trx.name}</TableRowColumn>
-          <TableRowColumn>${trx.amount}</TableRowColumn>
-          <TableRowColumn>{trx.date}</TableRowColumn>
-          <TableRowColumn>{trx.category}</TableRowColumn>
-          <TableRowColumn>{trx._v}</TableRowColumn>
+        <TableRow key={i}>
+        {columns.map((colName) => <TableRowColumn>{trx[colName]}</TableRowColumn>)}
         </TableRow>
       )
     })
     return (
       <div>
-        <Table>
-          <TableHeader>
+        <Table 
+          fixedHeader={true}
+          height={'300px'}
+          onRowSelection={(row)=>this.props.deleteRow(TRX[row]._id)}
+        >
+          <TableHeader displaySelectAll={false} style={{color:'red'}}>
             <TableRow>
               {transactionHeader}
             </TableRow>
