@@ -11,6 +11,8 @@ import classNames from 'classnames'
 import Icon from '@material-ui/core/Icon'
 import AppBar from '@material-ui/core/AppBar'
 
+import {dateFormat} from '../Helpers/trxFormFormatter'
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -60,6 +62,13 @@ class FormDialog extends Component {
     })
   }
 
+  getToday = ()=>{
+    const today = new Date()
+    const year = today.getFullYear().toString() 
+    const month = dateFormat((today.getMonth()+1).toString())
+    const day =  dateFormat(today.getDate().toString())
+    return `${year}-${month}-${day}`
+  }
 
   render() {
     const { classes } = this.props
@@ -95,6 +104,7 @@ class FormDialog extends Component {
                 required
                 margin="dense"
                 id="date"
+                defaultValue={this.getToday()}
                 label="Transaction Date"
                 type="date"
                 onChange={this.handleFormInput}

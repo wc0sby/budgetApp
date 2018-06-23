@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import {formatter} from '../Helpers/formatter'
 
 class DataTable extends Component{
   render(){
@@ -15,35 +16,35 @@ class DataTable extends Component{
     const columns = Object.keys(TRX[0]).filter((trx)=>{
       return trx !== '_id' && trx !=='__v'
     })
-    console.log(columns);
 
-    const transactionHeader = columns.map((trx, i)=><TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>)
-
-    const dateFormatter =(date)=>{
-      const trxDate = new Date(date)
-      return `${trxDate.getMonth()+1}/${trxDate.getDate()+1}/${trxDate.getFullYear()}`
-    }
+    const transactionHeader = [...columns, ''].map((trx, i)=><TableHeaderColumn key={i}>{trx.toUpperCase()}</TableHeaderColumn>)
 
     const transactionData = TRX.map((trx,i)=>{
       return (
         <TableRow key={i}>
-        {columns.map((colName) => <TableRowColumn>{trx[colName]}</TableRowColumn>)}
+        {[...columns, ''].map((colName, x) => <TableRowColumn key={x}>{formatter[colName](trx[colName])}</TableRowColumn>)}
         </TableRow>
       )
     })
+    
     return (
       <div>
         <Table 
           fixedHeader={true}
           height={'300px'}
-          onRowSelection={(row)=>this.props.deleteRow(TRX[row]._id)}
+          onRowSelection={(row)=>this.props.toggleButtons(row)}
+          // onRowSelection={(row)=>this.props.deleteRow(TRX[row]._id)}
         >
-          <TableHeader displaySelectAll={false} style={{color:'red'}}>
-            <TableRow>
+          <TableHeader 
+            displaySelectAll={false} 
+            adjustForCheckbox={false}
+            style={{color:'red'}}
+          >
+            <TableRow >
               {transactionHeader}
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody displayRowCheckbox={false}>
             {transactionData}
           </TableBody>
         </Table>

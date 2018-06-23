@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Card, CardContent, Typography} from '@material-ui/core';
+import {decimalCorrection} from '../Helpers/formatter'
 
 
 export default class CardHold extends Component {
@@ -8,10 +9,10 @@ export default class CardHold extends Component {
       marginBottom: '10px'
     }
     const data = typeof(this.props.data)==='object'
-      ? this.props.data.map(item=>item.amount)
+      ? '$' + decimalCorrection (this.props.data.map(item=>item.amount)
         .reduce((acc,val)=>{
          return Number(acc) + Number(val)
-        },0)
+        },0))
       : this.props.data
 
     return (

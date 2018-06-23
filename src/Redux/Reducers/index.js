@@ -23,8 +23,15 @@ const budgetTrx = (state = [], action)=>{
   return state
 }
 
+const toggleButtons = (state = [], action)=>{
+  if (action.type === "ROW_CLICKED"){
+    console.log(action.value)
+    return action.value
+  }
+  return state
+}
 
 const rootReducer = combineReducers({
-  mainTrx, cashTrx, budgetTrx
+  mainTrx, cashTrx, budgetTrx, toggleButtons
 });
 export default rootReducer
